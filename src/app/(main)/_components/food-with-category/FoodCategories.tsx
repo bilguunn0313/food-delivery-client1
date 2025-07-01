@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { FoodsWithCategories } from "./FoodsWithCategories";
 
 const categories = [
@@ -23,6 +24,21 @@ const categories = [
 ];
 
 export const FoodCategories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await fetch("http://localhost:3001/category");
+      const data = await response.json();
+
+      setCategories(data.category);
+
+      console.log(data);
+    };
+
+    getCategories();
+  }, []);
+
   if (!categories.length)
     return <p className="text-white">No categories found</p>;
 

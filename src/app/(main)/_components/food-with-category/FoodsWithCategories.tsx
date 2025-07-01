@@ -1,6 +1,7 @@
 "use client";
 
 import { FoodCard } from "@/components/food";
+import { useEffect, useState } from "react";
 
 export const foodWithCategories = [
   {
@@ -38,6 +39,20 @@ export const foodWithCategories = [
 ];
 
 export const FoodsWithCategories = () => {
+  const [foods, setFoods] = useState([]);
+
+  useEffect(() => {
+    const getFoods = async () => {
+      const response = await fetch("http://localhost:3001/food/");
+      const data = response.json();
+      console.log(data);
+
+      setFoods(data);
+    };
+
+    getFoods();
+  }, []);
+  //iiiii
   if (!foodWithCategories?.length) return null;
 
   const nonEmptyCategories = foodWithCategories.filter(
