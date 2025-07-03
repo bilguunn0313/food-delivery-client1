@@ -12,10 +12,11 @@ export type Food = {
   price: number;
   image: string;
   ingredients: string;
+  category: string;
 };
 
 export type FoodsWithCategory = {
-  _id: Category;
+  _id: string;
   categoryName: string;
   foods: Food[];
   count: number;

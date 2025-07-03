@@ -12,18 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ChangeEvent, useState } from "react";
 import { ImageUploader } from "./ImageUploader";
+import { Food } from "@/lib/utils/types";
 
 type AddFoodModalProps = {
   categoryName: string;
   categoryId: string;
-};
-
-type FoodInfo = {
-  foodName: string;
-  price: string;
-  image: string;
-  ingredients: string;
-  category: string;
 };
 
 export const AddFoodModal = ({
@@ -32,9 +25,10 @@ export const AddFoodModal = ({
 }: AddFoodModalProps) => {
   const [uploadedImage, setUploadedImage] = useState<File>();
 
-  const [foodInfo, setFoodInfo] = useState<FoodInfo>({
+  const [foodInfo, setFoodInfo] = useState<Food>({
+    _id: "",
     foodName: "",
-    price: "",
+    price: 0,
     image: "",
     ingredients: "",
     category: categoryId,
@@ -53,8 +47,9 @@ export const AddFoodModal = ({
 
   const handleCreateFood = async () => {
     setFoodInfo({
+      ...foodInfo,
       foodName: "",
-      price: "",
+      price: 0,
       image: "",
       ingredients: "",
       category: categoryId,

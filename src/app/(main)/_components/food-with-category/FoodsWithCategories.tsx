@@ -19,9 +19,6 @@ export const FoodsWithCategories = () => {
 
     getFoods();
   }, []);
-  //iiiii
-
-  console.log(foodsWithCategory);
 
   const nonEmptyCategories = foodsWithCategory.filter(
     (category) => category?.foods?.length > 0
@@ -44,6 +41,7 @@ export const FoodsWithCategories = () => {
                     image={food?.image}
                     ingredients={food?.ingredients}
                     _id={food?._id}
+                    category={food.category}
                   />
                 </div>
               );
