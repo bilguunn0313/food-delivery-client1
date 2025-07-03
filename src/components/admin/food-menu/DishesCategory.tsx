@@ -51,7 +51,7 @@ export const DishesCategory = () => {
             </p>
           </div>
         ))}
-        <AddCategoryModal />
+        <AddCategoryModal  />
       </div>
     </div>
   );

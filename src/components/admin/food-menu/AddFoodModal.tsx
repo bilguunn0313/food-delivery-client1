@@ -46,14 +46,24 @@ export const AddFoodModal = ({
   };
 
   const handleCreateFood = async () => {
-    setFoodInfo({
-      ...foodInfo,
-      foodName: "",
-      price: 0,
-      image: "",
-      ingredients: "",
-      category: categoryId,
-    });
+    try {
+      const response = await fetch("http://localhost:3001/food/", {
+        method: "POST",
+        body: JSON.stringify(foodInfo),
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      const data = await response.json()
+      if (!response.ok) {
+        throw new Error("Failed to create category");
+      }
+      console.log("foods",data)
+      setFoodInfo(data)
+
+    } catch (error) {
+      
+    }
   };
 
   const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
