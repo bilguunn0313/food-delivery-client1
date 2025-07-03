@@ -12,9 +12,10 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { useState } from "react";
+import { Food } from "@/lib/utils/types";
 
 type FoodDetailModalProps = {
-  food: never;
+  food: Food;
   isModalOpen: boolean;
   onToggleModal: () => void;
 };

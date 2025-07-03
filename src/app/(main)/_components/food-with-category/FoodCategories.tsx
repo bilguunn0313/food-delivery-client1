@@ -2,29 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { FoodsWithCategories } from "./FoodsWithCategories";
-
-const categories = [
-  {
-    categoryName: "categoryName1",
-    _id: 1,
-  },
-  {
-    categoryName: "categoryName2",
-    _id: 2,
-  },
-  {
-    categoryName: "categoryName3",
-    _id: 3,
-  },
-
-  {
-    categoryName: "categoryName4",
-    _id: 4,
-  },
-];
+import { Category } from "@/lib/utils/types";
 
 export const FoodCategories = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -32,8 +13,6 @@ export const FoodCategories = () => {
       const data = await response.json();
 
       setCategories(data.category);
-
-      console.log(data);
     };
 
     getCategories();

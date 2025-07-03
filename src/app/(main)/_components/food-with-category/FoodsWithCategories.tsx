@@ -1,61 +1,29 @@
 "use client";
 
 import { FoodCard } from "@/components/food";
+import { FoodsWithCategory } from "@/lib/utils/types";
 import { useEffect, useState } from "react";
 
-export const foodWithCategories = [
-  {
-    _id: "1",
-    categoryName: "categoryName1",
-    count: 1,
-    foods: [
-      {
-        _id: "1",
-        foodName: "foodName1",
-        price: 1200,
-        image: "",
-        ingredients: "ingredients ingredients ingredients",
-        createdAt: "string",
-        updatedAt: "",
-      },
-    ],
-  },
-  {
-    _id: "2",
-    categoryName: "categoryName2",
-    count: 2,
-    foods: [
-      {
-        _id: "2",
-        foodName: "foodName2",
-        price: 12001,
-        image: "",
-        ingredients: "ingredients ingredients ingredients",
-        createdAt: "string",
-        updatedAt: "",
-      },
-    ],
-  },
-];
-
 export const FoodsWithCategories = () => {
-  const [foods, setFoods] = useState([]);
+  const [foodsWithCategory, setFoodsWithCategory] = useState<
+    FoodsWithCategory[]
+  >([]);
 
   useEffect(() => {
     const getFoods = async () => {
-      const response = await fetch("http://localhost:3001/food/");
-      const data = response.json();
-      console.log(data);
+      const response = await fetch("http://localhost:3001/food");
+      const data = await response.json();
 
-      setFoods(data);
+      setFoodsWithCategory(data.foodWithCategories);
     };
 
     getFoods();
   }, []);
   //iiiii
-  if (!foodWithCategories?.length) return null;
 
-  const nonEmptyCategories = foodWithCategories.filter(
+  console.log(foodsWithCategory);
+
+  const nonEmptyCategories = foodsWithCategory.filter(
     (category) => category?.foods?.length > 0
   );
 
