@@ -28,8 +28,7 @@ export const FoodDetailModal = ({
 }: FoodDetailModalProps) => {
   const [quantity, setQuantity] = useState<number>(1);
 
-  const foodCart = useContext(FoodCartContext);
-  const { setFoodCart } = foodCart;
+  const { foodCart, setFoodCart } = useContext(FoodCartContext);
 
   const { foodName, image, ingredients, price } = food;
 
@@ -43,6 +42,7 @@ export const FoodDetailModal = ({
 
   const handleAddToCart = () => {
     setFoodCart([
+      ...foodCart,
       {
         foodName: foodName,
         price: price,

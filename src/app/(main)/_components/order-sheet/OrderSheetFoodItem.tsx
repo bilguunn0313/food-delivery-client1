@@ -1,10 +1,22 @@
 import { SidebarDashLine } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Food } from "@/lib/utils/types";
 
 import { CircleX, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 
-export const OrderSheetFoodItem = ({ food, quantity }) => {
+type orderType = {
+  food: Food;
+  quantity: number;
+};
+
+export const OrderSheetFoodItem = ({
+  food,
+  quantity,
+}: {
+  food: Food;
+  quantity: number;
+}) => {
   return (
     <>
       <div className="flex gap-3">
@@ -47,7 +59,7 @@ export const OrderSheetFoodItem = ({ food, quantity }) => {
               </Button>
             </div>
 
-            <h4 className="font-bold">12₮</h4>
+            <h4 className="font-bold">{quantity * food.price}</h4>
           </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ export type Food = {
   image: string;
   ingredients: string;
   category: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type FoodsWithCategory = {
@@ -20,4 +22,6 @@ export type FoodsWithCategory = {
   categoryName: string;
   foods: Food[];
   count: number;
+  createdAt: string;
+  updatedAt: string;
 };
