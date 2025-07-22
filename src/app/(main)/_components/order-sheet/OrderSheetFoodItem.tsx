@@ -1,22 +1,20 @@
 import { SidebarDashLine } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Food } from "@/lib/utils/types";
+import { FoodWithQuantity, useFoodCart } from "@/provider/FoodCart";
 
 import { CircleX, Minus, Plus } from "lucide-react";
 import Image from "next/image";
+import { FC } from "react";
 
-type orderType = {
-  food: Food;
-  quantity: number;
-};
-
-export const OrderSheetFoodItem = ({
+export const OrderSheetFoodItem: FC<FoodWithQuantity> = ({
   food,
   quantity,
-}: {
-  food: Food;
-  quantity: number;
+  totalPrice,
 }) => {
+  const { incrementFoodQuantity, decrementFoodQuantity, removeFromCart } =
+    useFoodCart();
+
   return (
     <>
       <div className="flex gap-3">
@@ -43,18 +41,25 @@ export const OrderSheetFoodItem = ({
               size={50}
               color="red"
               className="cursor-pointer"
+              onClick={() => removeFromCart(food._id)}
             />
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Button variant="ghost">
+              <Button
+                variant="ghost"
+                onClick={() => decrementFoodQuantity(food._id)}
+              >
                 <Minus />
               </Button>
 
               <div className="text-lg font-semibold">{quantity}</div>
 
-              <Button variant="ghost">
+              <Button
+                variant="ghost"
+                onClick={() => incrementFoodQuantity(food._id)}
+              >
                 <Plus />
               </Button>
             </div>

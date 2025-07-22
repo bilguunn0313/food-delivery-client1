@@ -24,18 +24,11 @@ export const cartData = [
 ];
 export const OrderSheetCart = () => {
   const { foodCart } = useContext(FoodCartContext);
-  console.log(foodCart);
 
   const renderFoodCard = () => {
     if (foodCart?.length) {
       return foodCart?.map((item) => {
-        return (
-          <OrderSheetFoodItem
-            key={item.price}
-            food={item.foodName}
-            quantity={item.quantity}
-          />
-        );
+        return <OrderSheetFoodItem key={item.food._id} {...item} />;
       });
     }
     return <OrderSheetEmptyCard />;
